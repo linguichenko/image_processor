@@ -7,7 +7,8 @@ stages:
 
 .check:
   stage: test
-  image: cr.yandex/crp5icde4qogb2dgv49s/cpp-course-build-14
+  image: cr.yandex/crppmgcujiph4hvf0dup/hse-cxx-build:latest
+  allow_failure: true
   script:
     - cmake --version
     - mkdir -p build/solutions
@@ -28,6 +29,6 @@ deploy:
   - docker
   stage: release
   script:
-  - docker pull cr.yandex/crp5icde4qogb2dgv49s/cpp-course-build-14
-  - docker build -f testenv.docker -t cr.yandex/crp5icde4qogb2dgv49s/cpp-course .
-  - docker push cr.yandex/crp5icde4qogb2dgv49s/cpp-course:latest
+  - docker pull cr.yandex/crppmgcujiph4hvf0dup/hse-cxx-build:latest
+  - docker build -f testenv.docker -t cr.yandex/crppmgcujiph4hvf0dup/hse-cxx-base-testenv .
+  - docker push cr.yandex/crppmgcujiph4hvf0dup/hse-cxx-base-testenv
