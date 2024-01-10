@@ -1,5 +1,5 @@
 grade:
-  image: cr.yandex/crp5icde4qogb2dgv49s/cpp-course
+  image: cr.yandex/crppmgcujiph4hvf0dup/hse-cxx-base-testenv
   only:
     - /^submits/.*$/
   script:
