@@ -1,6 +1,6 @@
 [submodule "private"]
 	path = private
-	url = git@gitlab.com:BigRedEye1/hse-base-cxx-2024-private.git
+	url = ../hse-base-cxx-2024-private.git
 [submodule "grader"]
 	path = grader
-	url = git@gitlab.com:BigRedEye1/hse-base-cxx-2024-grader.git
+	url = ../hse-base-cxx-2024-grader.git
