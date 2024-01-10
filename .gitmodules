@@ -1,6 +1,6 @@
 [submodule "private"]
 	path = private
-	url = ../../mfgnik/cpp-private.git
+	url = git@gitlab.com:BigRedEye1/hse-base-cxx-2024-private.git
 [submodule "grader"]
 	path = grader
-	url = ../../mfgnik/cpp-grader.git
+	url = git@gitlab.com:BigRedEye1/hse-base-cxx-2024-grader.git
