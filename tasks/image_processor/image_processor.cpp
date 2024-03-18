@@ -49,8 +49,6 @@ public:
         unsigned char information_header[information_header_size];
         f.read(reinterpret_cast<char*>(information_header), information_header_size);
 
-        int file_size = file_header[2] + (file_header[3] << char_size)
-                        + (file_header[4] << 2 * char_size) + (file_header[5] << 3 * char_size);
         width_ = information_header[4] + (information_header[5] << char_size)
                  + (information_header[6] << 2 * char_size) + (information_header[7] << 3 * char_size);
         heigth_ = information_header[8] + (information_header[9] << char_size)
