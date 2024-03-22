@@ -79,11 +79,11 @@ public:
         FileHeader file_header;
         DIBHeader information_header;
 
-        file_header.file_size = file_header_size;
-
         f.read(reinterpret_cast<char*>(&file_header), sizeof(file_header));
         f.read(reinterpret_cast<char*>(&information_header), sizeof(information_header));
 
+        width_ = information_header.width;
+        height_ = information_header.height;
         colors_.resize(width_ * height_);
         const int padding = ((4 - width_ * 3 % 4) % 4);
 
@@ -118,26 +118,13 @@ public:
 
         file_header.file_size = file_size;
 
-        file_header[2] = file_size;
-        file_header[3] = file_size >> char_size;
-        file_header[4] = file_size >> 2 * char_size;
-        file_header[5] = file_size >> 3 * char_size;
-        file_header[10] = file_header_size + information_header_size;
+        file_header.file_type = base_values::FILE_TYPE;
+        file_header.file_size = file_size;
+        file_header.offset_data = file_header_size + information_header_size;
 
-        for (size_t i = 0; i < information_header_size; ++i) {
-            information_header[i] = 0;
-        }
-        information_header[0] = information_header_size;
-        information_header[4] = width_;
-        information_header[5] = width_ >> char_size;
-        information_header[6] = width_ >> 2 * char_size;
-        information_header[7] = width_ >> 3 * char_size;
-        information_header[8] = height_;
-        information_header[9] = height_ >> char_size;
-        information_header[10] = height_ >> 2 * char_size;
-        information_header[11] = height_ >> 3 * char_size;
-        information_header[12] = 1;
-        information_header[14] = 24;
+        information_header.size = information_header_size;
+        information_header.width = width_;
+        information_header.height = height_;
 
         f.write(reinterpret_cast<char*>(&file_header), sizeof(file_header));
         f.write(reinterpret_cast<char*>(&information_header), sizeof(information_header));
