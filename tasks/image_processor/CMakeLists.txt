@@ -1,4 +1,8 @@
 add_executable(
     image_processor
-    image_processor.cpp
+        image.cpp
+        image.h
+        filter.cpp
+        filter.h
+        crop.cpp
 )
