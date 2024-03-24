@@ -12,9 +12,8 @@ int NormalizeIndex(int x, int n) {
     return x;
 }
 
-
 FilterWithMatrix::FilterWithMatrix(float* matrix) {
-    for (int i = 0; i < sizeof(matrix); ++i) {
+    for (int i = 0; i < 9; ++i) { //NOLINT
         matrix_[i] = matrix[i];
     }
 };
@@ -38,7 +37,7 @@ void FilterWithMatrix::FilterPixel(Image image, int i, int j) {
     image.colors_[i][j].b  = blue;
 }
 
-void FilterWithMatrix::Filter(Image & image) {
+void FilterWithMatrix::Apply(Image & image) {
     for (int i = 0; i < image.height_; ++i){
         for (int j = 0; j < image.width_; ++j){
             FilterPixel(image, i, j);

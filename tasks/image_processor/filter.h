@@ -3,7 +3,13 @@
 
 int NormalizeIndex(int x, int n);
 
-class FilterWithMatrix {
+class BaseFilter {
+public:
+    virtual void Apply(Image& image){};
+    ~BaseFilter(){};
+};
+
+class FilterWithMatrix : BaseFilter{
 private:
     float matrix_[3 * 3];
 
@@ -12,19 +18,39 @@ public:
 
     void FilterPixel(Image image, int i, int j);
 
-    void Filter(Image& image);
+    void Apply(Image& image) override;
 
     ~FilterWithMatrix(){};
 };
 
-void Crop(Image & image, int width, int height);
+class Crop : public BaseFilter {
+private:
+    int width_;
+    int height_;
+public:
+    Crop(int width, int height) : width_(width), height_(height){};
+    void Apply(Image &image) override;
+};
 
-void Greyscale(Image & image);
+class Greyscale : BaseFilter {
+public:
+    void Apply(Image &image) override;
+};
 
-void Negative(Image & image);
+class Negative : BaseFilter{
+public:
+    void Apply(Image &image) override;
+};
 
-void Sharp(Image & image);
+class Sharp : public FilterWithMatrix {
+private:
+    float matrix_[9] = {0, -1, 0, -1, 5, -1, 0, -1, 0};  // NOLINT
+};
 
-void Edges(Image & image, float threshold);
-
-
+class Edges : public FilterWithMatrix {
+private:
+    float matrix_[9] = {0, -1, 0, -1, 4, -1, 0, -1, 0};  // NOLINT
+    float threshold_;
+public:
+    void Apply(Image &image) override;
+};

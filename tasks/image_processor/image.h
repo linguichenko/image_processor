@@ -6,7 +6,7 @@
 
 
 namespace base_values{
-const uint16_t FILE_TYPE{0x4D42};
+const uint16_t FILE_TYPE{19778};
 const uint32_t FILE_SIZE{0};
 const uint32_t UNUSED{0};
 const int32_t OFFSET_DATA{54};
@@ -22,13 +22,15 @@ const uint32_t Y_PIXELS_PER_METER{0};
 const uint32_t COLORS_USED{0};
 const uint32_t COLORS_IMPORTANT{0};
 const float NUM{255.0f};
-}
+};
 
+
+#pragma pack(push, 1)
 struct FileHeader {
     uint16_t file_type{base_values::FILE_TYPE};
     uint32_t file_size{base_values::FILE_SIZE};
     uint32_t unused{base_values::UNUSED};
-    uint32_t offset_data{base_values::OFFSET_DATA};
+    int32_t offset_data{base_values::OFFSET_DATA};
 };
 
 struct DIBHeader {
@@ -54,6 +56,7 @@ struct Color {
 
 class Image {
 public:
+    Image(){};
     Image(int width, int height);
 
     ~Image() {};
@@ -62,9 +65,9 @@ public:
 
     void SetColor(float r, float g, float b, int x, int y);
 
-    void Read(const char* path);
+    void Read(const std::string path);
 
-    void Write(const char* path) const;
+    void Write(const std::string path) const;
     int width_;
     int height_;
     std::vector<std::vector<Color>> colors_;

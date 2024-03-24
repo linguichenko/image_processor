@@ -9,4 +9,5 @@ add_executable(
         negative.cpp
         sharpening.cpp
         edge_detection.cpp
+        main.cpp
 )
