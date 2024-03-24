@@ -15,10 +15,10 @@ Color Image::GetColor(int x, int y) const {
     return colors_[x][y];
 };
 
-void Image::SetColor(const Color& color, int x, int y) {
-    colors_[x][y].r = color.r;
-    colors_[x][y].g = color.g;
-    colors_[x][y].b = color.b;
+void Image::SetColor(float r, float g, float b, int x, int y) {
+    colors_[x][y].r = r;
+    colors_[x][y].g = g;
+    colors_[x][y].b = b;
 };
 
 void Image::Read(const char* path) {
