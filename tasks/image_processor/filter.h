@@ -14,9 +14,9 @@ private:
     float matrix_[3 * 3];
 
 public:
-    explicit FilterWithMatrix(float* matrix);
+    FilterWithMatrix(){};
 
-    void FilterPixel(Image image, int i, int j);
+    explicit FilterWithMatrix(float* matrix);
 
     void Apply(Image& image) override;
 
@@ -44,7 +44,9 @@ public:
 
 class Sharp : public FilterWithMatrix {
 private:
-    float matrix_[9] = {0, -1, 0, -1, 5, -1, 0, -1, 0};  // NOLINT
+    float matrix_[9] = {0, -1, 0, -1, 5, -1, 0, -1, 0}; //NOLINT
+public:
+    void Apply(Image& image) override;
 };
 
 class Edges : public FilterWithMatrix {
@@ -52,5 +54,6 @@ private:
     float matrix_[9] = {0, -1, 0, -1, 4, -1, 0, -1, 0};  // NOLINT
     float threshold_;
 public:
+    explicit Edges(float threshold) : threshold_(threshold){};
     void Apply(Image &image) override;
 };

@@ -24,7 +24,6 @@ const uint32_t COLORS_IMPORTANT{0};
 const float NUM{255.0f};
 };
 
-
 #pragma pack(push, 1)
 struct FileHeader {
     uint16_t file_type{base_values::FILE_TYPE};
@@ -32,7 +31,9 @@ struct FileHeader {
     uint32_t unused{base_values::UNUSED};
     int32_t offset_data{base_values::OFFSET_DATA};
 };
+#pragma pack(pop)
 
+#pragma pack(push, 1)
 struct DIBHeader {
     uint32_t size{base_values::SIZE};
     int32_t width{base_values::WIDTH};
@@ -46,6 +47,8 @@ struct DIBHeader {
     uint32_t colors_used{base_values::COLORS_USED};
     uint32_t colors_important{base_values::COLORS_IMPORTANT};
 };
+#pragma pack(pop)
+
 
 struct Color {
     float r, g, b;

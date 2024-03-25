@@ -5,7 +5,7 @@ add_executable(
         filter.cpp
         filter.h
         crop.cpp
-        grayscale.cpp
+        greyscale.cpp
         negative.cpp
         sharpening.cpp
         edge_detection.cpp

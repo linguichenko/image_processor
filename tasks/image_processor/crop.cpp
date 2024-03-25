@@ -8,7 +8,7 @@ void Crop::Apply(Image &image) {
     std::vector<std::vector<Color> > new_colors(new_height, std::vector<Color>(new_width));
     for (int i = 0; i < new_height; ++i) {
         for (int j = 0; j < new_width; ++j) {
-            new_colors[i][j] = image.colors_[i][j];
+            new_colors[i][j] = image.colors_[i + image.height_ - new_height][j];
         }
     }
     image.colors_ = new_colors;

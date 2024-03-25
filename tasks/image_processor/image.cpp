@@ -24,15 +24,11 @@ void Image::SetColor(float r, float g, float b, int x, int y) {
 void Image::Read(const std::string path) {
     std::ifstream f{path, std::ios::in | std::ios::binary};
 
-    std::cout << path << std::endl;
-
     FileHeader file_header;
     DIBHeader information_header;
 
     f.read(reinterpret_cast<char*>(&file_header), sizeof(file_header));
     f.read(reinterpret_cast<char*>(&information_header), sizeof(information_header));
-    std::cout << file_header.file_type<< ' ' << file_header.file_size << ' ' << file_header.offset_data << ' ' << file_header.unused << std::endl;
-    std::cout << information_header.width << ' ' << information_header.height << ' ' << information_header.size;
     width_ = information_header.width;
     height_ = information_header.height;
 
@@ -40,7 +36,6 @@ void Image::Read(const std::string path) {
     const int padding = ((4 - width_ * 3 % 4) % 4);
 
     f.ignore( file_header.offset_data - sizeof(information_header) - sizeof(file_header));
-    std::cout << height_ << ' ' << width_<< ' ';
     for (int x = 0; x < height_; ++x) {
         for (int y = 0; y < width_; ++y) {
             unsigned char color[3];
@@ -50,11 +45,8 @@ void Image::Read(const std::string path) {
             colors_[x][y].g = static_cast<float>(color[1]) / base_values::NUM;
             colors_[x][y].b = static_cast<float>(color[0]) / base_values::NUM;
         }
-        std::cout << x << std::endl;
         f.ignore(padding);
-        std::cout << x << std::endl;
     }
-    std::cout << "aaaa" << std::endl;
     f.close();
 };
 
@@ -85,7 +77,7 @@ void Image::Write(const std::string path) const {
             unsigned char r = static_cast<unsigned char>(GetColor(x, y).r * base_values::NUM);
             unsigned char g = static_cast<unsigned char>(GetColor(x, y).g * base_values::NUM);
             unsigned char b = static_cast<unsigned char>(GetColor(x, y).b * base_values::NUM);
-            unsigned char color[] = {b, r, g};
+            unsigned char color[] = {b, g, r};
             f.write(reinterpret_cast<char*>(color), 3);
         }
         f.write(reinterpret_cast<char*>(bmp_pad), padding);
