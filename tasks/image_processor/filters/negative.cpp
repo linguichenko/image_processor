@@ -1,6 +1,5 @@
-#include "image.h"
-#include "filter.h"
-
+#include "../image.h"
+#include "../filter.h"
 
 void Negative::Apply(Image &image) const{
     for (int i = 0; i < image.height_; ++i) {

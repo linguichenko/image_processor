@@ -5,7 +5,7 @@ int NormalizeIndex(int x, int n);
 
 class BaseFilter {
 public:
-    virtual void Apply(Image& image) const = 0;
+    virtual void Apply(Image& image) const{};
     virtual ~BaseFilter(){};
 };
 
@@ -30,13 +30,14 @@ public:
     void Apply(Image &image) const override;
 };
 
-class Greyscale : BaseFilter {
+class Greyscale : public BaseFilter {
 public:
     void Apply(Image &image) const override;
 };
 
-class Negative : BaseFilter{
+class Negative : public BaseFilter{
 public:
+    Negative() {};
     void Apply(Image &image) const override;
 };
 
@@ -44,7 +45,6 @@ public:
 class Sharp : public FilterWithMatrix {
 public:
     Sharp();
-
     void Apply(Image &image) const override;
 };
 
@@ -54,4 +54,20 @@ private:
 public:
     explicit Edges(float threshold);
     void Apply(Image &image) const override;
+};
+
+class Blur : public BaseFilter {
+private:
+    double sigma_;
+public:
+    explicit Blur(double sigma) : sigma_(sigma){};
+    void Apply(Image& image) const override;
+};
+
+class Glass : public BaseFilter {
+private:
+    double distortion_;
+public:
+    explicit Glass(double distortion) : distortion_(distortion){};
+    void Apply(Image& image) const override;
 };

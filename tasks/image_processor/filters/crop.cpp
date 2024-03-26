@@ -1,6 +1,5 @@
-#include "image.h"
-#include "filter.h"
-
+#include "../image.h"
+#include "../filter.h"
 
 void Crop::Apply(Image &image) const{
     int new_width = std::min(image.width_, width_);

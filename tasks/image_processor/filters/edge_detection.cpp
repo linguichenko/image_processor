@@ -1,5 +1,5 @@
-#include "image.h"
-#include "filter.h"
+#include "../image.h"
+#include "../filter.h"
 
 void Edges::Apply(Image &image) const{
     Greyscale greyscale;
@@ -19,4 +19,5 @@ void Edges::Apply(Image &image) const{
 Edges::Edges(float threshold) {
     const std::vector<std::vector<float>> filter_matrix = {{0, -1, 0}, {-1, 4, -1}, {0, -1, 0}};
     matrix_ = filter_matrix;
+    threshold_ = threshold;
 }
