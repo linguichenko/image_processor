@@ -3,7 +3,7 @@
 
 
 
-void Greyscale::Apply(Image &image) {
+void Greyscale::Apply(Image &image) const{
     const float red = 0.299;
     const float green = 0.587;
     const float blue = 0.114;
