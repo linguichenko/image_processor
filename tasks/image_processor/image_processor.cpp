@@ -22,14 +22,13 @@ int main(int argc, char* argv[]) {
     image.Read(args.input_file);
     std::vector<FilterArgs> filters;
     int i = 3;
-    std::cout<<"2"<<std::endl;
     while (i < argc) {
         if (argv[i][0] == '-') {
             FilterArgs new_args;
             new_args.name = argv[i];
             filters.push_back(new_args);
             int j = i + 1;
-            while (j < argc && argv[j][0] != '-' ) {
+            while (j < argc && argv[j][0] != '-') {
                 filters[i - 3].parameters.push_back(argv[j]);
                 ++j;
             }
