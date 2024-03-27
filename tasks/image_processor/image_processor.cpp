@@ -3,13 +3,15 @@
 #include "parser.cpp"
 
 // int main() {
+//     Args args;
 //     Image image;
 //     const std::string path = "../tasks/image_processor/test_script/data/lenna.bmp";
 //     //const std::string path = "../tasks/image_processor/photo_2024-03-26_18-09-36.bmp";
 //     image.Read(path);
+//     std::vector<FilterArgs> filters(3 - 1);
 //     const std::string path2 = "../tasks/image_processor/output.bmp";
-//     Edges edges(0.1);
-//     edges.Apply(image);
+//     Greyscale greyscale;
+//     greyscale.Apply(image);
 //     image.Write(path2);
 //     return 0;
 // }
@@ -20,7 +22,7 @@ int main(int argc, char* argv[]) {
     args.output_file = argv[1];
     Image image;
     image.Read(args.input_file);
-    std::vector<FilterArgs> filters(argc - 1);
+    std::vector<FilterArgs> filters;
     int i = 2;
     while (i < argc) {
         if (argv[i][0] == '-') {
@@ -29,7 +31,7 @@ int main(int argc, char* argv[]) {
             filters.push_back(new_args);
             int j = i + 1;
             while (argv[j][0] != '-') {
-                filters[i].parameters.push_back(argv[i]);
+                filters[i - 2].parameters.push_back(argv[i]);
             }
             i = j;
         }
