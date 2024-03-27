@@ -64,7 +64,7 @@ std::unique_ptr<FilterWithMatrix> BlurFactory::CreateMatrix(const FilterParamete
     return nullptr;
 }
 
-std::vector<FilterArgs> Parser(Args args, int argc, char* argv[]) {
+std::vector<FilterArgs> Parser(int argc, char* argv[]) {
     std::vector<FilterArgs> filters;
     int i = 3;
     int k = 0;

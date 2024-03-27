@@ -73,4 +73,4 @@ public:
 
 Image Read(const std::string path);
 
-void Write(Image &image, const std::string path);
+void Write(const Image &image, const std::string path);

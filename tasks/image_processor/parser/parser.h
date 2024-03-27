@@ -1,3 +1,4 @@
+#pragma once
 #include "../image_creation/image.h"
 #include "../filters/general_filter/filter.h"
 #include <memory>
@@ -51,5 +52,5 @@ struct BlurFactory : public FilterFactory {
     std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override;
 };
 
-std::vector<FilterArgs> Parser(Args args, int argc, char* argv[]);
+std::vector<FilterArgs> Parser(int argc, char* argv[]);
 Image Filters(Image image, std::vector<FilterArgs> filters);
