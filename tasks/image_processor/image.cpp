@@ -34,7 +34,8 @@ void Image::Read(const std::string path) {
     colors_.assign(height_, std::vector<Color>(width_));
     const int padding = ((4 - width_ * 3 % 4) % 4);
 
-    f.ignore(file_header.offset_data - static_cast<int64_t>(sizeof(information_header)) - static_cast<int64_t>(sizeof(file_header)));
+    f.ignore(file_header.offset_data - static_cast<int64_t>(sizeof(information_header)) -
+             static_cast<int64_t>(sizeof(file_header)));
     for (int x = 0; x < height_; ++x) {
         for (int y = 0; y < width_; ++y) {
             unsigned char color[3];
