@@ -4,10 +4,14 @@ add_executable(
         image.h
         filter.cpp
         filter.h
-        crop.cpp
-        greyscale.cpp
-        negative.cpp
-        sharpening.cpp
-        edge_detection.cpp
-        main.cpp
+        filters/crop.cpp
+        filters/greyscale.cpp
+        filters/negative.cpp
+        filters/sharpening.cpp
+        filters/edge_detection.cpp
+        image_processor.cpp
+        parser.cpp
+        parser.h
+        filters/blur.cpp
+        filters/glass.cpp
 )
