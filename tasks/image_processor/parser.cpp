@@ -2,18 +2,17 @@
 #include "filter.h"
 #include <memory>
 
-using FilterParameters = std::vector<std::string>;  //всё-таки удобнее string, кажется
-
+using FilterParameters = std::vector<std::string>;
 
 struct FilterArgs {
     std::string name;
     FilterParameters parameters;
 };
 
-struct Args{
+struct Args {
     std::string input_file;
     std::string output_file;
-    std::vector<FilterArgs> filters; //удобнее, когда анализируем и выкидываем неподходящее уже потом
+    std::vector<FilterArgs> filters;
 };
 
 struct FilterFactory {

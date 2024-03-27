@@ -1,7 +1,7 @@
 #include "../image.h"
 #include "../filter.h"
 
-void Edges::Apply(Image &image) const{
+void Edges::Apply(Image &image) const {
     Greyscale greyscale;
     greyscale.Apply(image);
     ApplyMatrix(image);

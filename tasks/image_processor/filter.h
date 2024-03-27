@@ -5,11 +5,11 @@ int NormalizeIndex(int x, int n);
 
 class BaseFilter {
 public:
-    virtual void Apply(Image& image) const{};
+    virtual void Apply(Image& image) const {};
     virtual ~BaseFilter(){};
 };
 
-class FilterWithMatrix : BaseFilter{
+class FilterWithMatrix : BaseFilter {
 protected:
     std::vector<std::vector<float>> matrix_;
 
@@ -18,13 +18,14 @@ public:
 
     explicit FilterWithMatrix(std::vector<std::vector<float>> matrix);
 
-    void ApplyMatrix(Image& image) const;
+    void ApplyMatrix(Image &image) const;
 };
 
 class Crop : public BaseFilter {
 private:
     int width_;
     int height_;
+
 public:
     Crop(int width, int height) : width_(width), height_(height){};
     void Apply(Image &image) const override;
@@ -37,10 +38,9 @@ public:
 
 class Negative : public BaseFilter{
 public:
-    Negative() {};
+    Negative(){};
     void Apply(Image &image) const override;
 };
-
 
 class Sharp : public FilterWithMatrix {
 public:
@@ -51,6 +51,7 @@ public:
 class Edges : public FilterWithMatrix {
 private:
     float threshold_;
+
 public:
     explicit Edges(float threshold);
     void Apply(Image &image) const override;
@@ -59,15 +60,17 @@ public:
 class Blur : public BaseFilter {
 private:
     double sigma_;
+
 public:
     explicit Blur(double sigma) : sigma_(sigma){};
-    void Apply(Image& image) const override;
+    void Apply(Image &image) const override;
 };
 
 class Glass : public BaseFilter {
 private:
     double distortion_;
+
 public:
     explicit Glass(double distortion) : distortion_(distortion){};
-    void Apply(Image& image) const override;
+    void Apply(Image &image) const override;
 };

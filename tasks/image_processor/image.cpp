@@ -1,9 +1,8 @@
 #include "image.h"
 
+Color::Color() : r(0), g(0), b(0){};
 
-Color::Color() : r(0), g(0), b(0) {};
-
-Color::Color(float r, float g, float b) : r(r), g(r), b(r) {};
+Color::Color(float r, float g, float b) : r(r), g(r), b(r){};
 
 Image::Image(int width, int height) {
     width_ = width;
@@ -35,7 +34,7 @@ void Image::Read(const std::string path) {
     colors_.assign(height_, std::vector<Color>(width_));
     const int padding = ((4 - width_ * 3 % 4) % 4);
 
-    f.ignore( file_header.offset_data - sizeof(information_header) - sizeof(file_header));
+    f.ignore(file_header.offset_data - sizeof(information_header) - sizeof(file_header));
     for (int x = 0; x < height_; ++x) {
         for (int y = 0; y < width_; ++y) {
             unsigned char color[3];

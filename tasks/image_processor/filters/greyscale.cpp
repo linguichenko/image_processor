@@ -1,7 +1,7 @@
 #include "../image.h"
 #include "../filter.h"
 
-void Greyscale::Apply(Image &image) const{
+void Greyscale::Apply(Image &image) const {
     const float red = 0.299;
     const float green = 0.587;
     const float blue = 0.114;
@@ -13,5 +13,3 @@ void Greyscale::Apply(Image &image) const{
         }
     }
 }
-
-

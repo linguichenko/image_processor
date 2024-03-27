@@ -4,8 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-
-namespace base_values{
+namespace base_values {
 const uint16_t FILE_TYPE{19778};
 const uint32_t FILE_SIZE{0};
 const uint32_t UNUSED{0};
@@ -22,7 +21,7 @@ const uint32_t Y_PIXELS_PER_METER{0};
 const uint32_t COLORS_USED{0};
 const uint32_t COLORS_IMPORTANT{0};
 const float NUM{255.0f};
-};
+};  // namespace base_values
 
 #pragma pack(push, 1)
 struct FileHeader {
@@ -49,12 +48,11 @@ struct DIBHeader {
 };
 #pragma pack(pop)
 
-
 struct Color {
     float r, g, b;
     Color();
     Color(float r, float g, float b);
-    ~Color() {};
+    ~Color(){};
 };
 
 class Image {
@@ -62,7 +60,7 @@ public:
     Image(){};
     Image(int width, int height);
 
-    ~Image() {};
+    ~Image(){};
 
     Color GetColor(int x, int y) const;
 

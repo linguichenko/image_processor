@@ -2,17 +2,17 @@
 #include "image.h"
 #include "parser.cpp"
 
-//int main() {
-//    Image image;
-//    const std::string path = "../tasks/image_processor/test_script/data/lenna.bmp";
-//    //const std::string path = "../tasks/image_processor/photo_2024-03-26_18-09-36.bmp";
-//    image.Read(path);
-//    const std::string path2 = "../tasks/image_processor/output.bmp";
-//    Edges edges(0.1);
-//    edges.Apply(image);
-//    image.Write(path2);
-//    return 0;
-//}
+// int main() {
+//     Image image;
+//     const std::string path = "../tasks/image_processor/test_script/data/lenna.bmp";
+//     //const std::string path = "../tasks/image_processor/photo_2024-03-26_18-09-36.bmp";
+//     image.Read(path);
+//     const std::string path2 = "../tasks/image_processor/output.bmp";
+//     Edges edges(0.1);
+//     edges.Apply(image);
+//     image.Write(path2);
+//     return 0;
+// }
 
 int main(int argc, char* argv[]) {
     Args args;
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
             i = j;
         }
     }
-    for (FilterArgs const & arg  : filters) {
+    for (FilterArgs const& arg : filters) {
         if (arg.name == "-gs") {
             GreyscaleFactory factory;
             std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
@@ -61,9 +61,9 @@ int main(int argc, char* argv[]) {
             ptr->Apply(image);
         }
         if (arg.name == "-blur") {
-           BlurFactory factory;
-           std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
-           ptr->Apply(image);
+            BlurFactory factory;
+            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
+            ptr->Apply(image);
         }
     }
     image.Write(args.output_file);

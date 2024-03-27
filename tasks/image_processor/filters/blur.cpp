@@ -2,7 +2,7 @@
 #include "../image.h"
 #include "../filter.h"
 
-void Blur::Apply(Image &image) const{
+void Blur::Apply(Image &image) const {
     std::vector<std::vector<Color>> new_pixels(image.height_, std::vector<Color>(image.width_));
     for (int x = 0; x < image.height_; ++x) {
         for (int y = 0; y < image.width_; ++y) {

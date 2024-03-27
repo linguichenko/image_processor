@@ -1,7 +1,6 @@
 #include "image.h"
 #include "filter.h"
 
-
 int NormalizeIndex(int x, int n) {
     if (x < 0) {
         x = 0;
@@ -16,14 +15,14 @@ FilterWithMatrix::FilterWithMatrix(std::vector<std::vector<float>> matrix) {
     matrix_ = matrix;
 };
 
-void FilterWithMatrix::ApplyMatrix(Image & image) const{
+void FilterWithMatrix::ApplyMatrix(Image& image) const {
     std::vector<std::vector<Color>> new_pixels = image.colors_;
 
     const int size_of_kernel = 9;
     const int dx[size_of_kernel] = {-1, -1, -1, 0, 0, 0, 1, 1, 1};
     const int dy[size_of_kernel] = {-1, 0, 1, -1, 0, 1, -1, 0, 1};
-    for (int i = 0; i < image.height_; ++i){
-        for (int j = 0; j < image.width_; ++j){
+    for (int i = 0; i < image.height_; ++i) {
+        for (int j = 0; j < image.width_; ++j) {
             float red = 0;
             float blue = 0;
             float green = 0;
@@ -44,7 +43,3 @@ void FilterWithMatrix::ApplyMatrix(Image & image) const{
     }
     image.colors_ = new_pixels;
 }
-
-
-
-
