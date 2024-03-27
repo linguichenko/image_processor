@@ -17,9 +17,8 @@ struct Args{
 };
 
 struct FilterFactory {
-    virtual std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const{};
-    virtual std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const{};
-    virtual std::string GetHelpMessage() const{};
+    virtual std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const = 0;
+    virtual std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const = 0;
     virtual ~FilterFactory() = default;
 };
 
@@ -33,6 +32,9 @@ struct CropFactory : public FilterFactory {
         auto x = std::make_unique<Crop>(width, height);
         return x;
     }
+    std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override {
+        return nullptr;
+    }
 };
 
 struct NegativeFactory : public FilterFactory {
@@ -41,6 +43,9 @@ struct NegativeFactory : public FilterFactory {
             //ошибка, return
         }
         return std::make_unique<Negative>();
+    }
+    std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override {
+        return nullptr;
     }
 };
 
@@ -51,6 +56,9 @@ struct GreyscaleFactory : public FilterFactory {
         }
         return std::make_unique<Greyscale>();
     }
+    std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override {
+        return nullptr;
+    }
 };
 
 struct SharpFactory : public FilterFactory {
@@ -59,6 +67,9 @@ struct SharpFactory : public FilterFactory {
             //ошибка, return
         }
         return std::make_unique<Sharp>();
+    }
+    std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override {
+        return nullptr;
     }
 };
 
@@ -70,6 +81,9 @@ struct EdgesFactory : public FilterFactory {
         int threshold = std::stoi(params.at(0));
         return std::make_unique<Edges>(threshold);
     }
+    std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override {
+        return nullptr;
+    }
 };
 
 struct BlurFactory : public FilterFactory {
@@ -79,6 +93,9 @@ struct BlurFactory : public FilterFactory {
         }
         int sigma = std::stoi(params.at(0));
         return std::make_unique<Blur>(sigma);
+    }
+    std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override {
+        return nullptr;
     }
 };
 
