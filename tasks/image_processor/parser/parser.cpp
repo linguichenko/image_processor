@@ -85,7 +85,6 @@ std::vector<FilterArgs> Parser(int argc, char* argv[]) {
     return filters;
 }
 
-
 Image Filters(Image image, std::vector<FilterArgs> filters) {
     for (FilterArgs const& arg : filters) {
         if (arg.name == "-gs") {

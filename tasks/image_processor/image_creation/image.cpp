@@ -27,8 +27,8 @@ Image Read(const std::string path) {
     DIBHeader information_header;
     Image image;
 
-    f.read(reinterpret_cast<char*>(&file_header), sizeof(file_header));
-    f.read(reinterpret_cast<char*>(&information_header), sizeof(information_header));
+    f.read(reinterpret_cast<char *>(&file_header), sizeof(file_header));
+    f.read(reinterpret_cast<char *>(&information_header), sizeof(information_header));
     image.width_ = information_header.width;
     image.height_ = information_header.height;
 
@@ -40,7 +40,7 @@ Image Read(const std::string path) {
     for (int x = 0; x < image.height_; ++x) {
         for (int y = 0; y < image.width_; ++y) {
             unsigned char color[3];
-            f.read(reinterpret_cast<char*>(color), 3);
+            f.read(reinterpret_cast<char *>(color), 3);
 
             image.colors_[x][y].r = static_cast<float>(color[2]) / base_values::NUM;
             image.colors_[x][y].g = static_cast<float>(color[1]) / base_values::NUM;
@@ -71,8 +71,8 @@ void Write(const Image &image, const std::string path) {
     information_header.width = image.width_;
     information_header.height = image.height_;
 
-    f.write(reinterpret_cast<char*>(&file_header), sizeof(file_header));
-    f.write(reinterpret_cast<char*>(&information_header), sizeof(information_header));
+    f.write(reinterpret_cast<char *>(&file_header), sizeof(file_header));
+    f.write(reinterpret_cast<char *>(&information_header), sizeof(information_header));
 
     for (int x = 0; x < image.height_; ++x) {
         for (int y = 0; y < image.width_; ++y) {
@@ -80,9 +80,9 @@ void Write(const Image &image, const std::string path) {
             unsigned char g = static_cast<unsigned char>(image.GetColor(x, y).g * base_values::NUM);
             unsigned char b = static_cast<unsigned char>(image.GetColor(x, y).b * base_values::NUM);
             unsigned char color[] = {b, g, r};
-            f.write(reinterpret_cast<char*>(color), 3);
+            f.write(reinterpret_cast<char *>(color), 3);
         }
-        f.write(reinterpret_cast<char*>(bmp_pad), padding);
+        f.write(reinterpret_cast<char *>(bmp_pad), padding);
     }
     f.close();
 };
