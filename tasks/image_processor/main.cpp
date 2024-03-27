@@ -37,22 +37,34 @@ int main(int argc, char* argv[]) {
     for (FilterArgs const & arg  : filters) {
         if (arg.name == "-gs") {
             GreyscaleFactory factory;
+            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
+            ptr->Apply(image);
         }
         if (arg.name == "-crop") {
             CropFactory factory;
+            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
+            ptr->Apply(image);
         }
         if (arg.name == "-neg") {
             NegativeFactory factory;
+            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
+            ptr->Apply(image);
         }
         if (arg.name == "-sharp") {
             SharpFactory factory;
+            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
+            ptr->Apply(image);
         }
         if (arg.name == "-edge") {
             EdgesFactory factory;
+            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
+            ptr->Apply(image);
         }
         if (arg.name == "-blur") {
            BlurFactory factory;
+           std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
+           ptr->Apply(image);
         }
-        factory.Create(arg.parameters)->Apply(image);
     }
+    image.Write(args.output_file);
 }
