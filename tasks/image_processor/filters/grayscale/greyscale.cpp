@@ -1,5 +1,5 @@
-#include "../image.h"
-#include "../filter.h"
+#include "../../image_creation/image.h"
+#include "greyscale.h"
 
 void Greyscale::Apply(Image &image) const {
     const float red = 0.299;

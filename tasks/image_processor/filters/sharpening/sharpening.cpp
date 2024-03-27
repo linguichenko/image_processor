@@ -1,5 +1,5 @@
-#include "../image.h"
-#include "../filter.h"
+#include "../../image_creation/image.h"
+#include "sharpening.h"
 
 void Sharp::ApplySpecial(Image &image) const {
     ApplyMatrix(image);

@@ -1,5 +1,6 @@
-#include "../image.h"
-#include "../filter.h"
+#include "../../image_creation/image.h"
+#include "../grayscale/greyscale.h"
+#include "edge_detection.h"
 
 void Edges::ApplySpecial(Image &image) const {
     Greyscale greyscale;

@@ -66,10 +66,11 @@ public:
 
     void SetColor(float r, float g, float b, int x, int y);
 
-    void Read(const std::string path);
-
-    void Write(const std::string path) const;
     int width_;
     int height_;
     std::vector<std::vector<Color>> colors_;
 };
+
+Image Read(const std::string path);
+
+void Write(Image &image, const std::string path);

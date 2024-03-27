@@ -1,6 +1,6 @@
 #include <valarray>
-#include "../image.h"
-#include "../filter.h"
+#include "../../image_creation/image.h"
+#include "blur.h"
 
 void Blur::Apply(Image &image) const {
     std::vector<std::vector<Color>> new_pixels(image.height_, std::vector<Color>(image.width_));

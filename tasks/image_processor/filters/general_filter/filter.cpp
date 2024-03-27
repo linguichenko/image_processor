@@ -1,4 +1,4 @@
-#include "image.h"
+#include "../../image_creation/image.h"
 #include "filter.h"
 
 int NormalizeIndex(int x, int n) {
