@@ -2,7 +2,7 @@
 
 Color::Color() : r(0), g(0), b(0){};
 
-Color::Color(double r, double g, double b) : r(r), g(r), b(r){};
+Color::Color(float r, float g, float b) : r(r), g(r), b(r){};
 
 Image::Image(int width, int height) {
     width_ = width;
@@ -14,7 +14,7 @@ Color Image::GetColor(int x, int y) const {
     return colors_[x][y];
 };
 
-void Image::SetColor(double r, double g, double b, int x, int y) {
+void Image::SetColor(float r, float g, float b, int x, int y) {
     colors_[x][y].r = r;
     colors_[x][y].g = g;
     colors_[x][y].b = b;

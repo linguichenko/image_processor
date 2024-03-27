@@ -11,9 +11,9 @@ void Blur::Apply(Image &image) const {
             new_pixels[x][y].r = 0;
             int l = std::max(0, static_cast<int>(x - 3 * sigma_));
             int r = std::min(image.height_, static_cast<int>(x + 3 * sigma_));
-            double sum = 0;
+            float sum = 0;
             for (int i = l; i < r; ++i) {
-                double c = std::exp(-(x - i) * (x - i) / (2 * sigma_ * sigma_));
+                float c = std::exp(-static_cast<float>((x - i) * (x - i) / (2 * sigma_ * sigma_)));
                 new_pixels[x][y].r += image.GetColor(i, y).r * c;
                 new_pixels[x][y].g += image.GetColor(i, y).g * c;
                 new_pixels[x][y].b += image.GetColor(i, y).b * c;
@@ -32,9 +32,9 @@ void Blur::Apply(Image &image) const {
             new_pixels[x][y].r = 0;
             int l = std::max(0, static_cast<int>(y - 3 * sigma_));
             int r = std::min(image.width_, static_cast<int>(y + 3 * sigma_));
-            double sum = 0;
+            float sum = 0;
             for (int i = l; i < r; ++i) {
-                double c = std::exp(-(y - i) * (y - i) / (2 * sigma_ * sigma_));
+                float c = std::exp(-static_cast<float>((y - i) * (y - i) / (2 * sigma_ * sigma_)));
                 new_pixels[x][y].r += image.GetColor(x, i).r * c;
                 new_pixels[x][y].g += image.GetColor(x, i).g * c;
                 new_pixels[x][y].b += image.GetColor(x, i).b * c;

@@ -49,9 +49,9 @@ struct DIBHeader {
 #pragma pack(pop)
 
 struct Color {
-    double r, g, b;
+    float r, g, b;
     Color();
-    Color(double r, double g, double b);
+    Color(float r, float g, float b);
     ~Color(){};
 };
 
@@ -64,7 +64,7 @@ public:
 
     Color GetColor(int x, int y) const;
 
-    void SetColor(double r, double g, double b, int x, int y);
+    void SetColor(float r, float g, float b, int x, int y);
 
     void Read(const std::string path);
 

@@ -62,7 +62,7 @@ private:
     double sigma_;
 
 public:
-    explicit Blur(double sigma) : sigma_(sigma){};
+    explicit Blur(float sigma) : sigma_(sigma){};
     void Apply(Image &image) const override;
 };
 
