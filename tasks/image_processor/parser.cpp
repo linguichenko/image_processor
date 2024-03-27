@@ -97,5 +97,3 @@ struct BlurFactory : public FilterFactory {
         return nullptr;
     }
 };
-
-
