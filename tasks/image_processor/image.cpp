@@ -2,7 +2,7 @@
 
 Color::Color() : r(0), g(0), b(0){};
 
-Color::Color(float r, float g, float b) : r(r), g(r), b(r){};
+Color::Color(double r, double g, double b) : r(r), g(r), b(r){};
 
 Image::Image(int width, int height) {
     width_ = width;
@@ -14,7 +14,7 @@ Color Image::GetColor(int x, int y) const {
     return colors_[x][y];
 };
 
-void Image::SetColor(float r, float g, float b, int x, int y) {
+void Image::SetColor(double r, double g, double b, int x, int y) {
     colors_[x][y].r = r;
     colors_[x][y].g = g;
     colors_[x][y].b = b;
@@ -34,7 +34,7 @@ void Image::Read(const std::string path) {
     colors_.assign(height_, std::vector<Color>(width_));
     const int padding = ((4 - width_ * 3 % 4) % 4);
 
-    f.ignore(file_header.offset_data - sizeof(information_header) - sizeof(file_header));
+    f.ignore(file_header.offset_data - static_cast<int64_t>(sizeof(information_header)) - static_cast<int64_t>(sizeof(file_header)));
     for (int x = 0; x < height_; ++x) {
         for (int y = 0; y < width_; ++y) {
             unsigned char color[3];

@@ -23,9 +23,9 @@ void FilterWithMatrix::ApplyMatrix(Image& image) const {
     const int dy[size_of_kernel] = {-1, 0, 1, -1, 0, 1, -1, 0, 1};
     for (int i = 0; i < image.height_; ++i) {
         for (int j = 0; j < image.width_; ++j) {
-            float red = 0;
-            float blue = 0;
-            float green = 0;
+            double red = 0;
+            double blue = 0;
+            double green = 0;
             for (int k = 0; k < size_of_kernel; ++k) {
                 int x = NormalizeIndex(i + dx[k], image.height_);
                 int y = NormalizeIndex(j + dy[k], image.width_);
@@ -33,9 +33,9 @@ void FilterWithMatrix::ApplyMatrix(Image& image) const {
                 blue += (image.GetColor(x, y)).b * matrix_[k % 3][k / 3];
                 green += (image.GetColor(x, y)).g * matrix_[k % 3][k / 3];
             }
-            red = std::min(1.f, std::max(0.f, red));
-            green = std::min(1.f, std::max(0.f, green));
-            blue = std::min(1.f, std::max(0.f, blue));
+            red = std::min(1.0, std::max(0.0, red));
+            green = std::min(1.0, std::max(0.0, green));
+            blue = std::min(1.0, std::max(0.0, blue));
             new_pixels[i][j].r = red;
             new_pixels[i][j].g = green;
             new_pixels[i][j].b = blue;
