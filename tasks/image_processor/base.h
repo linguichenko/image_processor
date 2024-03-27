@@ -1,0 +1,11 @@
+#pragma once
+#include "image_creation/image.h"
+#include "filters/general_filter/filter.h"
+#include "filters/grayscale/greyscale.h"
+#include "filters/sharpening/sharpening.h"
+#include "filters/crop/crop.h"
+#include "filters/blur/blur.h"
+#include "filters/negative/negative.h"
+#include "filters/edge_detection/edge_detection.h"
+#include "filters/glass/glass.h"
+#include "parser/parser.h"

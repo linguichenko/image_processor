@@ -21,4 +21,5 @@ add_executable(
         filters/blur/blur.h
         filters/crop/crop.h
         filters/glass/glass.h
+        base.h
 )

@@ -1,5 +1,4 @@
-#include "image_creation/image.h"
-#include "parser/parser.cpp"
+#include "base.h"
 
 int main(int argc, char* argv[]) {
     Args args;
