@@ -20,7 +20,7 @@ public:
 
     void ApplyMatrix(Image &image) const;
 
-    virtual void ApplySpecial(Image &image) const{};
+    virtual void ApplySpecial(Image &image) const {};
 };
 
 class Crop : public BaseFilter {
