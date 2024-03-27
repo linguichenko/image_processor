@@ -25,7 +25,6 @@ int main(int argc, char* argv[]) {
     int i = 3;
     int k = 0;
     while (i < argc) {
-        std::cout <<"i: "<<i<<std::endl;
         if (argv[i][0] == '-') {
             FilterArgs new_args;
             new_args.name = argv[i];
@@ -40,7 +39,6 @@ int main(int argc, char* argv[]) {
             ++k;
         }
     }
-    std::cout << "something" << std::endl;
     for (FilterArgs const& arg : filters) {
         if (arg.name == "-gs") {
             GreyscaleFactory factory;
@@ -63,11 +61,9 @@ int main(int argc, char* argv[]) {
             ptr->ApplySpecial(image);
         }
         if (arg.name == "-edge") {
-            std::cout<<1<<std::endl;
             EdgesFactory factory;
             std::unique_ptr<FilterWithMatrix> ptr = factory.CreateMatrix(arg.parameters);
             ptr->ApplySpecial(image);
-            std::cout<<2<<std::endl;
         }
         if (arg.name == "-blur") {
             BlurFactory factory;
