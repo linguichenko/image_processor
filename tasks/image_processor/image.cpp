@@ -83,4 +83,3 @@ void Image::Write(const std::string path) const {
     }
     f.close();
 };
-

@@ -5,7 +5,7 @@ int NormalizeIndex(int x, int n);
 
 class BaseFilter {
 public:
-    virtual void Apply(Image& image) const {};
+    virtual void Apply(Image &image) const {};
     virtual ~BaseFilter(){};
 };
 
@@ -36,7 +36,7 @@ public:
     void Apply(Image &image) const override;
 };
 
-class Negative : public BaseFilter{
+class Negative : public BaseFilter {
 public:
     Negative(){};
     void Apply(Image &image) const override;
