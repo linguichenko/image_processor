@@ -19,6 +19,8 @@ public:
     explicit FilterWithMatrix(std::vector<std::vector<float>> matrix);
 
     void ApplyMatrix(Image &image) const;
+
+    virtual void ApplySpecial(Image &image) const{};
 };
 
 class Crop : public BaseFilter {
@@ -45,7 +47,7 @@ public:
 class Sharp : public FilterWithMatrix {
 public:
     Sharp();
-    void Apply(Image &image) const override;
+    void ApplySpecial(Image &image) const override;
 };
 
 class Edges : public FilterWithMatrix {
@@ -54,7 +56,7 @@ private:
 
 public:
     explicit Edges(float threshold);
-    void Apply(Image &image) const override;
+    void ApplySpecial(Image &image) const override;
 };
 
 class Blur : public BaseFilter {

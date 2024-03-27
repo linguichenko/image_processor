@@ -77,7 +77,7 @@ struct EdgesFactory : public FilterFactory {
         if (params.size() != 1) {
             //ошибка, return
         }
-        int threshold = std::stoi(params.at(0));
+        float threshold = std::stof(params.at(0));
         return std::make_unique<Edges>(threshold);
     }
     std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override {
@@ -90,7 +90,7 @@ struct BlurFactory : public FilterFactory {
         if (params.size() != 1) {
             //ошибка, return
         }
-        int sigma = std::stoi(params.at(0));
+        float sigma = std::stof(params.at(0));
         return std::make_unique<Blur>(sigma);
     }
     std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override {

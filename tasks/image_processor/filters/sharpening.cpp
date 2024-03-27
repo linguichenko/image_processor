@@ -1,7 +1,7 @@
 #include "../image.h"
 #include "../filter.h"
 
-void Sharp::Apply(Image &image) const {
+void Sharp::ApplySpecial(Image &image) const {
     ApplyMatrix(image);
 }
 
