@@ -21,7 +21,6 @@ int main(int argc, char* argv[]) {
     Image image;
     image.Read(args.input_file);
     std::vector<FilterArgs> filters;
-    std::cout<<argc<<std::endl;
     int i = 3;
     int k = 0;
     while (i < argc) {
@@ -31,7 +30,6 @@ int main(int argc, char* argv[]) {
             filters.push_back(new_args);
             int j = i + 1;
             while (j < argc && argv[j][0] != '-') {
-                std::cout<<"j "<<j<<std::endl;
                 filters[k].parameters.push_back(argv[j]);
                 ++j;
             }
