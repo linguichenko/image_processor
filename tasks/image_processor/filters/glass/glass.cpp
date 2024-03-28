@@ -28,7 +28,7 @@
 void Glass::Apply(Image& image) const {
     int height_size = image.height_ / cell_size_ + 1;
     int width_size = image.width_ / cell_size_ + 1;
-    std::vector<std::vector<Color>> cells(height_size,std::vector<Color>(width_size));
+    std::vector<std::vector<Color>> cells(height_size, std::vector<Color>(width_size));
     std::vector<std::vector<Color>> new_pixels(image.height_, std::vector<Color>(image.width_));
     for (int y = 0; y < height_size; y++) {
         for (int x = 0; x < width_size; x++) {
