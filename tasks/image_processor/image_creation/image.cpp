@@ -118,7 +118,6 @@ void Write(const Image &image, const std::string path) {
     FileHeader file_header;
     DIBHeader information_header;
 
-    file_header.file_type = base_values::FILE_TYPE;
     file_header.file_size = file_header.offset_data + 3 * height * width + height * padding;
 
     information_header.size = information_header_size;

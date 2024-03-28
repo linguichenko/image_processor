@@ -5,7 +5,7 @@ int NormalizeIndex(int x, int n);
 
 class BaseFilter {
 public:
-    virtual void Apply(Image &image) const {};
+    virtual void Apply(Image &image) const = 0;
     virtual ~BaseFilter() = default;
 };
 
