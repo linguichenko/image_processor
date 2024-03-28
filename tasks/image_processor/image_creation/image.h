@@ -74,8 +74,6 @@ public:
 
     void SetHeight(int height);
 
-    void SetColors(std::vector<std::vector<Color>> new_pixels);
-
     int GetWidth() const;
     int GetHeight() const;
 

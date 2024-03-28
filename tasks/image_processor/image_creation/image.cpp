@@ -29,10 +29,6 @@ void Image::SetHeight(int height) {
     height_ = height;
 }
 
-void Image::SetColors(std::vector<std::vector<Color>> new_pixels) {
-    colors_ = new_pixels;
-}
-
 int Image::GetHeight() const {
     return height_;
 }
@@ -83,7 +79,7 @@ Image Read(const std::string path) {
     int width = image.GetWidth();
     int height = image.GetHeight();
 
-    image.colors_.assign(width, std::vector<Color>(width));
+    image.colors_.assign(height, std::vector<Color>(width));
     const int padding = ((4 - width * 3 % 4) % 4);
 
     f.ignore(file_header.offset_data - static_cast<int64_t>(sizeof(information_header)) -
