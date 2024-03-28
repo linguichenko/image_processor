@@ -60,10 +60,13 @@ Image Read(const std::string path) {
     f.read(reinterpret_cast<char *>(&information_header.bit_count), sizeof(information_header.bit_count));
     f.read(reinterpret_cast<char *>(&information_header.compression), sizeof(information_header.compression));
     f.read(reinterpret_cast<char *>(&information_header.size_image), sizeof(information_header.size_image));
-    f.read(reinterpret_cast<char *>(&information_header.x_pixels_per_meter), sizeof(information_header.x_pixels_per_meter));
-    f.read(reinterpret_cast<char *>(&information_header.y_pixels_per_meter), sizeof(information_header.y_pixels_per_meter));
+    f.read(reinterpret_cast<char *>(&information_header.x_pixels_per_meter),
+           sizeof(information_header.x_pixels_per_meter));
+    f.read(reinterpret_cast<char *>(&information_header.y_pixels_per_meter),
+           sizeof(information_header.y_pixels_per_meter));
     f.read(reinterpret_cast<char *>(&information_header.colors_used), sizeof(information_header.colors_used));
-    f.read(reinterpret_cast<char *>(&information_header.colors_important), sizeof(information_header.colors_important));
+    f.read(reinterpret_cast<char *>(&information_header.colors_important),
+           sizeof(information_header.colors_important));
 
     if (file_header.file_type != base_values::FILE_TYPE) {
         throw ReadImageException("Bad file");
@@ -149,10 +152,13 @@ void Write(const Image &image, const std::string path) {
     f.write(reinterpret_cast<char *>(&information_header.bit_count), sizeof(information_header.bit_count));
     f.write(reinterpret_cast<char *>(&information_header.compression), sizeof(information_header.compression));
     f.write(reinterpret_cast<char *>(&information_header.size_image), sizeof(information_header.size_image));
-    f.write(reinterpret_cast<char *>(&information_header.x_pixels_per_meter), sizeof(information_header.x_pixels_per_meter));
-    f.write(reinterpret_cast<char *>(&information_header.y_pixels_per_meter), sizeof(information_header.y_pixels_per_meter));
+    f.write(reinterpret_cast<char *>(&information_header.x_pixels_per_meter),
+            sizeof(information_header.x_pixels_per_meter));
+    f.write(reinterpret_cast<char *>(&information_header.y_pixels_per_meter),
+            sizeof(information_header.y_pixels_per_meter));
     f.write(reinterpret_cast<char *>(&information_header.colors_used), sizeof(information_header.colors_used));
-    f.write(reinterpret_cast<char *>(&information_header.colors_important), sizeof(information_header.colors_important));
+    f.write(reinterpret_cast<char *>(&information_header.colors_important),
+            sizeof(information_header.colors_important));
 
     for (int x = 0; x < height; ++x) {
         for (int y = 0; y < width; ++y) {
