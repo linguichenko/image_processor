@@ -1,9 +1,7 @@
 add_executable(
     image_processor
         image_creation/image.cpp
-        image_creation/image.h
         filters/general_filter/filter.cpp
-        filters/general_filter/filter.h
         filters/crop/crop.cpp
         filters/grayscale/greyscale.cpp
         filters/negative/negative.cpp
@@ -11,16 +9,6 @@ add_executable(
         filters/edge_detection/edge_detection.cpp
         image_processor.cpp
         parser/parser.cpp
-        parser/parser.h
         filters/blur/blur.cpp
         filters/glass/glass.cpp
-        filters/negative/negative.h
-        filters/edge_detection/edge_detection.h
-        filters/grayscale/greyscale.h
-        filters/sharpening/sharpening.h
-        filters/blur/blur.h
-        filters/crop/crop.h
-        filters/glass/glass.h
-        base.h
-        exceptions.h
 )
