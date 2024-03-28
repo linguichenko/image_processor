@@ -3,7 +3,7 @@
 int main(int argc, char* argv[]) {
     Args args;
     if (argc < 2) {
-        throw Exception("Please, enter input and output file names");
+        throw ParserException("Tou haven't entered input or output file name");
     }
     args.input_file = argv[1];
     args.output_file = argv[2];

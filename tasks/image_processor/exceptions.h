@@ -41,3 +41,13 @@ public:
         return message.c_str();
     }
 };
+
+class ParserException : public ImageProcessorException {
+public:
+    explicit ParserException(const std::string &message)
+        : ImageProcessorException("Parser exception with message: " + message) {
+    }
+    const char* what() const noexcept override {
+        return message.c_str();
+    }
+};
