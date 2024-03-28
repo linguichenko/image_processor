@@ -59,6 +59,7 @@ class Image {
 private:
     int width_;
     int height_;
+
 public:
     Image(){};
     Image(int width, int height);
