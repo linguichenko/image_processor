@@ -104,7 +104,7 @@ void Write(const Image &image, const std::string path) {
     f.open(path, std::ios::out | std::ios::binary);
 
     if (!f.is_open()) {
-        throw Exception("can't open file");
+        throw WriteImageException("can't open file");
     }
 
     int width = image.GetWidth();

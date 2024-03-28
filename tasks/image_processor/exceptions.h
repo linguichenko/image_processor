@@ -51,3 +51,13 @@ public:
         return message.c_str();
     }
 };
+
+class WriteImageException : public ImageProcessorException {
+public:
+    explicit WriteImageException(const std::string &message)
+        : ImageProcessorException("WriteImage exception with message: " + message) {
+    }
+    const char* what() const noexcept override {
+        return message.c_str();
+    }
+};
