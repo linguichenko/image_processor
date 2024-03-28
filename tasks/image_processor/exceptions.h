@@ -14,7 +14,7 @@ public:
 
 class OtherException : public ImageProcessorException {
 public:
-    explicit OtherException(const std::string &message)
+    explicit OtherException(const std::string& message)
         : ImageProcessorException("Other exception with message: " + message) {
     }
     const char* what() const noexcept override {
@@ -24,7 +24,7 @@ public:
 
 class ReadImageException : public ImageProcessorException {
 public:
-    explicit ReadImageException(const std::string &message)
+    explicit ReadImageException(const std::string& message)
         : ImageProcessorException("ReadImage exception with message: " + message) {
     }
     const char* what() const noexcept override {
@@ -34,7 +34,7 @@ public:
 
 class FilterException : public ImageProcessorException {
 public:
-    explicit FilterException(const std::string &message)
+    explicit FilterException(const std::string& message)
         : ImageProcessorException("Filter exception with message: " + message) {
     }
     const char* what() const noexcept override {
@@ -44,7 +44,7 @@ public:
 
 class ParserException : public ImageProcessorException {
 public:
-    explicit ParserException(const std::string &message)
+    explicit ParserException(const std::string& message)
         : ImageProcessorException("Parser exception with message: " + message) {
     }
     const char* what() const noexcept override {
@@ -54,7 +54,7 @@ public:
 
 class WriteImageException : public ImageProcessorException {
 public:
-    explicit WriteImageException(const std::string &message)
+    explicit WriteImageException(const std::string& message)
         : ImageProcessorException("WriteImage exception with message: " + message) {
     }
     const char* what() const noexcept override {
