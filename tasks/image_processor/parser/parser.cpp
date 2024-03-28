@@ -91,8 +91,7 @@ Image Filters(Image image, std::vector<FilterArgs> filters) {
     BlurFactory blur;
     EdgesFactory edges;
     std::map<std::string, FilterFactory*> filters_map = {
-        {"-gs", &greyscale}, {"-crop", &crop}, {"-neg", &negative},
-        {"-blur", &blur}, {"-glass", &glass}};
+        {"-gs", &greyscale}, {"-crop", &crop}, {"-neg", &negative}, {"-blur", &blur}, {"-glass", &glass}};
     std::map<std::string, MatrixFilterFactory*> matrix_filters_map = {{"-sharp", &sharp}, {"-edge", &edges}};
     for (FilterArgs const& arg : filters) {
         if (!filters_map.contains(arg.name) && !matrix_filters_map.contains(arg.name)) {
