@@ -18,7 +18,7 @@ public:
 
     explicit FilterWithMatrix(std::vector<std::vector<float>> matrix);
 
-    void ApplyMatrix(Image &image) const ;
+    void ApplyMatrix(Image &image) const;
 
-    void Apply(Image &image) const override {};
+    void Apply(Image &image) const override{};
 };

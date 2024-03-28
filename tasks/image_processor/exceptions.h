@@ -6,7 +6,8 @@ private:
     std::string message_;
 
 public:
-    explicit Exception(const std::string text) : message_(text) {}
+    explicit Exception(const std::string text) : message_(text) {
+    }
     const char* what() const noexcept override {
         return message_.c_str();
     }
@@ -17,7 +18,8 @@ private:
     std::string message_;
 
 public:
-    explicit ReadImageException(const std::string text) : message_(text) {}
+    explicit ReadImageException(const std::string text) : message_(text) {
+    }
     const char* what() const noexcept override {
         return message_.c_str();
     }
@@ -28,7 +30,8 @@ private:
     std::string message_;
 
 public:
-    explicit FilterException(const std::string text) : message_(text) {}
+    explicit FilterException(const std::string text) : message_(text) {
+    }
     const char* what() const noexcept override {
         return message_.c_str();
     }
