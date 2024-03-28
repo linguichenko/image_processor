@@ -17,7 +17,9 @@ struct Args {
 };
 
 struct FilterFactory {
-    virtual std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const = 0;
+    virtual std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const {
+        return nullptr;
+    };
     virtual ~FilterFactory() = default;
 };
 

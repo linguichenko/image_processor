@@ -1,3 +1,4 @@
+#include <map>
 #include "../base.h"
 
 std::unique_ptr<BaseFilter> CropFactory::Create(const FilterParameters& params) const {
@@ -82,37 +83,27 @@ std::vector<FilterArgs> Parser(int argc, char* argv[]) {
 }
 
 Image Filters(Image image, std::vector<FilterArgs> filters) {
+    GreyscaleFactory greyscale;
+    CropFactory crop;
+    NegativeFactory negative;
+    GlassFactory glass;
+    SharpFactory sharp;
+    BlurFactory blur;
+    EdgesFactory edges;
+    std::map<std::string, FilterFactory*> filters_map = {
+        {"-gs", &greyscale}, {"-crop", &crop}, {"-neg", &negative},
+        {"-blur", &blur}, {"-glass", &glass}};
+    std::map<std::string, MatrixFilterFactory*> matrix_filters_map = {{"-sharp", &sharp}, {"-edge", &edges}};
     for (FilterArgs const& arg : filters) {
-        if (arg.name == "-gs") {
-            GreyscaleFactory factory;
-            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
-            ptr->Apply(image);
-        } else if (arg.name == "-crop") {
-            CropFactory factory;
-            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
-            ptr->Apply(image);
-        } else if (arg.name == "-neg") {
-            NegativeFactory factory;
-            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
-            ptr->Apply(image);
-        } else if (arg.name == "-sharp") {
-            SharpFactory factory;
-            std::unique_ptr<FilterWithMatrix> ptr = factory.CreateMatrix(arg.parameters);
-            ptr->Apply(image);
-        } else if (arg.name == "-edge") {
-            EdgesFactory factory;
-            std::unique_ptr<FilterWithMatrix> ptr = factory.CreateMatrix(arg.parameters);
-            ptr->Apply(image);
-        } else if (arg.name == "-blur") {
-            BlurFactory factory;
-            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
-            ptr->Apply(image);
-        } else if (arg.name == "-glass") {
-            GlassFactory factory;
-            std::unique_ptr<BaseFilter> ptr = factory.Create(arg.parameters);
+        if (!filters_map.contains(arg.name) && !matrix_filters_map.contains(arg.name)) {
+            throw FilterException("filter does not exist");
+        }
+        if (filters_map.contains(arg.name)) {
+            std::unique_ptr<BaseFilter> ptr = filters_map.at(arg.name)->Create(arg.parameters);
             ptr->Apply(image);
         } else {
-            throw FilterException("unavailable filter");
+            std::unique_ptr<FilterWithMatrix> ptr = matrix_filters_map.at(arg.name)->CreateMatrix(arg.parameters);
+            ptr->Apply(image);
         }
     }
     return image;
