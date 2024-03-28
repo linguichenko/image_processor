@@ -48,8 +48,22 @@ Image Read(const std::string path) {
         throw ReadImageException("can't open file");
     }
 
-    f.read(reinterpret_cast<char *>(&file_header), sizeof(file_header));
-    f.read(reinterpret_cast<char *>(&information_header), sizeof(information_header));
+    // это вместо pragma pack(push, 1) :(
+    f.read(reinterpret_cast<char *>(&file_header.file_type), sizeof(file_header.file_type));
+    f.read(reinterpret_cast<char *>(&file_header.file_size), sizeof(file_header.file_size));
+    f.read(reinterpret_cast<char *>(&file_header.unused), sizeof(file_header.unused));
+    f.read(reinterpret_cast<char *>(&file_header.offset_data), sizeof(file_header.offset_data));
+    f.read(reinterpret_cast<char *>(&information_header.size), sizeof(information_header.size));
+    f.read(reinterpret_cast<char *>(&information_header.width), sizeof(information_header.width));
+    f.read(reinterpret_cast<char *>(&information_header.height), sizeof(information_header.height));
+    f.read(reinterpret_cast<char *>(&information_header.planes), sizeof(information_header.planes));
+    f.read(reinterpret_cast<char *>(&information_header.bit_count), sizeof(information_header.bit_count));
+    f.read(reinterpret_cast<char *>(&information_header.compression), sizeof(information_header.compression));
+    f.read(reinterpret_cast<char *>(&information_header.size_image), sizeof(information_header.size_image));
+    f.read(reinterpret_cast<char *>(&information_header.x_pixels_per_meter), sizeof(information_header.x_pixels_per_meter));
+    f.read(reinterpret_cast<char *>(&information_header.y_pixels_per_meter), sizeof(information_header.y_pixels_per_meter));
+    f.read(reinterpret_cast<char *>(&information_header.colors_used), sizeof(information_header.colors_used));
+    f.read(reinterpret_cast<char *>(&information_header.colors_important), sizeof(information_header.colors_important));
 
     if (file_header.file_type != base_values::FILE_TYPE) {
         throw ReadImageException("Bad file");
@@ -124,8 +138,21 @@ void Write(const Image &image, const std::string path) {
     information_header.width = width;
     information_header.height = height;
 
-    f.write(reinterpret_cast<char *>(&file_header), sizeof(file_header));
-    f.write(reinterpret_cast<char *>(&information_header), sizeof(information_header));
+    f.write(reinterpret_cast<char *>(&file_header.file_type), sizeof(file_header.file_type));
+    f.write(reinterpret_cast<char *>(&file_header.file_size), sizeof(file_header.file_size));
+    f.write(reinterpret_cast<char *>(&file_header.unused), sizeof(file_header.unused));
+    f.write(reinterpret_cast<char *>(&file_header.offset_data), sizeof(file_header.offset_data));
+    f.write(reinterpret_cast<char *>(&information_header.size), sizeof(information_header.size));
+    f.write(reinterpret_cast<char *>(&information_header.width), sizeof(information_header.width));
+    f.write(reinterpret_cast<char *>(&information_header.height), sizeof(information_header.height));
+    f.write(reinterpret_cast<char *>(&information_header.planes), sizeof(information_header.planes));
+    f.write(reinterpret_cast<char *>(&information_header.bit_count), sizeof(information_header.bit_count));
+    f.write(reinterpret_cast<char *>(&information_header.compression), sizeof(information_header.compression));
+    f.write(reinterpret_cast<char *>(&information_header.size_image), sizeof(information_header.size_image));
+    f.write(reinterpret_cast<char *>(&information_header.x_pixels_per_meter), sizeof(information_header.x_pixels_per_meter));
+    f.write(reinterpret_cast<char *>(&information_header.y_pixels_per_meter), sizeof(information_header.y_pixels_per_meter));
+    f.write(reinterpret_cast<char *>(&information_header.colors_used), sizeof(information_header.colors_used));
+    f.write(reinterpret_cast<char *>(&information_header.colors_important), sizeof(information_header.colors_important));
 
     for (int x = 0; x < height; ++x) {
         for (int y = 0; y < width; ++y) {
