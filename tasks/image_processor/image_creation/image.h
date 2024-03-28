@@ -56,6 +56,9 @@ struct Color {
 };
 
 class Image {
+private:
+    int width_;
+    int height_;
 public:
     Image(){};
     Image(int width, int height);
@@ -66,8 +69,15 @@ public:
 
     void SetColor(float r, float g, float b, int x, int y);
 
-    int width_;
-    int height_;
+    void SetWidth(int width);
+
+    void SetHeight(int height);
+
+    void SetColors(std::vector<std::vector<Color>> new_pixels);
+
+    int GetWidth() const;
+    int GetHeight() const;
+
     std::vector<std::vector<Color>> colors_;
 };
 

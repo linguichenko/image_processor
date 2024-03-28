@@ -6,8 +6,8 @@ void Edges::Apply(Image &image) const {
     Greyscale greyscale;
     greyscale.Apply(image);
     ApplyMatrix(image);
-    for (int i = 0; i < image.height_; ++i) {
-        for (int j = 0; j < image.width_; ++j) {
+    for (int i = 0; i < image.GetHeight(); ++i) {
+        for (int j = 0; j < image.GetWidth(); ++j) {
             if ((image.GetColor(i, j)).r > threshold_) {
                 image.SetColor(1, 1, 1, i, j);
             } else {

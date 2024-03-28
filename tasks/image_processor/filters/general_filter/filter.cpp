@@ -12,18 +12,20 @@ FilterWithMatrix::FilterWithMatrix(std::vector<std::vector<float>> matrix) {
 
 void FilterWithMatrix::ApplyMatrix(Image& image) const {
     std::vector<std::vector<Color>> new_pixels = image.colors_;
+    int height = image.GetHeight();
+    int width = image.GetWidth();
 
     const int size_of_kernel = 9;
     const int dx[size_of_kernel] = {-1, -1, -1, 0, 0, 0, 1, 1, 1};
     const int dy[size_of_kernel] = {-1, 0, 1, -1, 0, 1, -1, 0, 1};
-    for (int i = 0; i < image.height_; ++i) {
-        for (int j = 0; j < image.width_; ++j) {
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
             float red = 0;
             float blue = 0;
             float green = 0;
             for (int k = 0; k < size_of_kernel; ++k) {
-                int x = NormalizeIndex(i + dx[k], image.height_);
-                int y = NormalizeIndex(j + dy[k], image.width_);
+                int x = NormalizeIndex(i + dx[k], height);
+                int y = NormalizeIndex(j + dy[k], width);
                 red += (image.GetColor(x, y)).r * matrix_[k % 3][k / 3];
                 blue += (image.GetColor(x, y)).b * matrix_[k % 3][k / 3];
                 green += (image.GetColor(x, y)).g * matrix_[k % 3][k / 3];
