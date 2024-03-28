@@ -65,8 +65,7 @@ Image Read(const std::string path) {
     f.read(reinterpret_cast<char *>(&information_header.y_pixels_per_meter),
            sizeof(information_header.y_pixels_per_meter));
     f.read(reinterpret_cast<char *>(&information_header.colors_used), sizeof(information_header.colors_used));
-    f.read(reinterpret_cast<char *>(&information_header.colors_important),
-           sizeof(information_header.colors_important));
+    f.read(reinterpret_cast<char *>(&information_header.colors_important),sizeof(information_header.colors_important));
 
     if (file_header.file_type != base_values::FILE_TYPE) {
         throw ReadImageException("Bad file");
