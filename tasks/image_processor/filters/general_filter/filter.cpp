@@ -16,7 +16,8 @@ void FilterWithMatrix::ApplyMatrix(Image& image) const {
     int width = image.GetWidth();
 
     const int size_of_kernel = 9;
-    const int offsets[size_of_kernel][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 0}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
+    const int offsets[size_of_kernel][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 0},
+                                            {0, 1}, {1, -1}, {1, 0}, {1, 1}};
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
             float red = 0;
