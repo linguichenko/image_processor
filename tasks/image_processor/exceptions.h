@@ -2,38 +2,42 @@
 #include "exception"
 #include <string>
 
-class Exception : public std::exception {
-private:
-    std::string message_;
+class ImageProcessorException : public std::exception {
+protected:
+    std::string message;
 
 public:
-    explicit Exception(const std::string text) : message_(text) {
+    explicit ImageProcessorException(const std::string text) : message(text) {
+    }
+    const char* what() const noexcept override = 0;
+};
+
+class OtherException : public ImageProcessorException {
+public:
+    explicit OtherException(const std::string &message)
+        : ImageProcessorException("Other exception with message: " + message) {
     }
     const char* what() const noexcept override {
-        return message_.c_str();
+        return message.c_str();
     }
 };
 
-class ReadImageException : public std::exception {
-private:
-    std::string message_;
-
+class ReadImageException : public ImageProcessorException {
 public:
-    explicit ReadImageException(const std::string text) : message_(text) {
+    explicit ReadImageException(const std::string &message)
+        : ImageProcessorException("ReadImage exception with message: " + message) {
     }
     const char* what() const noexcept override {
-        return message_.c_str();
+        return message.c_str();
     }
 };
 
-class FilterException : public std::exception {
-private:
-    std::string message_;
-
+class FilterException : public ImageProcessorException {
 public:
-    explicit FilterException(const std::string text) : message_(text) {
+    explicit FilterException(const std::string &message)
+        : ImageProcessorException("Filter exception with message: " + message) {
     }
     const char* what() const noexcept override {
-        return message_.c_str();
+        return message.c_str();
     }
 };
