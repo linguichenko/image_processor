@@ -46,7 +46,7 @@ struct DIBHeader {
     uint32_t colors_used{base_values::COLORS_USED};
     uint32_t colors_important{base_values::COLORS_IMPORTANT};
 };
-#pragma pack(pop) // не получилось без прагмы, почему-то не работало отдельное считывание(
+#pragma pack(pop)  // не получилось без прагмы, почему-то не работало отдельное считывание(
 
 struct Color {
     float r, g, b;
