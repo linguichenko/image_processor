@@ -1,14 +1,9 @@
+#include <algorithm>
 #include "../../image_creation/image.h"
 #include "filter.h"
 
 int NormalizeIndex(int x, int n) {
-    if (x < 0) {
-        x = 0;
-    }
-    if (x >= n) {
-        x = n - 1;
-    }
-    return x;
+    return std::clamp(x, 0, n - 1);
 }
 
 FilterWithMatrix::FilterWithMatrix(std::vector<std::vector<float>> matrix) {

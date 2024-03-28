@@ -4,5 +4,5 @@
 class Sharp : public FilterWithMatrix {
 public:
     Sharp();
-    void ApplySpecial(Image &image) const override;
+    void Apply(Image &image) const override;
 };

@@ -18,38 +18,44 @@ struct Args {
 
 struct FilterFactory {
     virtual std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const = 0;
-    virtual std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const = 0;
     virtual ~FilterFactory() = default;
+};
+
+struct MatrixFilterFactory : FilterFactory {
+    std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override {
+        return nullptr;
+    };
+    virtual std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const = 0;
 };
 
 struct CropFactory : public FilterFactory {
     std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override;
-    std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override;
 };
 
 struct NegativeFactory : public FilterFactory {
     std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override;
-    std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override;
 };
 
 struct GreyscaleFactory : public FilterFactory {
     std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override;
-    std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override;
 };
 
-struct SharpFactory : public FilterFactory {
+struct SharpFactory : public MatrixFilterFactory {
     std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override;
     std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override;
 };
 
-struct EdgesFactory : public FilterFactory {
+struct EdgesFactory : public MatrixFilterFactory {
     std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override;
     std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override;
 };
 
 struct BlurFactory : public FilterFactory {
     std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override;
-    std::unique_ptr<FilterWithMatrix> CreateMatrix(const FilterParameters& params) const override;
+};
+
+struct GlassFactory : public FilterFactory {
+    std::unique_ptr<BaseFilter> Create(const FilterParameters& params) const override;
 };
 
 std::vector<FilterArgs> Parser(int argc, char* argv[]);

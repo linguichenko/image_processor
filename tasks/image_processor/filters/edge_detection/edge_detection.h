@@ -7,5 +7,5 @@ private:
 
 public:
     explicit Edges(float threshold);
-    void ApplySpecial(Image &image) const override;
+    void Apply(Image &image) const override;
 };

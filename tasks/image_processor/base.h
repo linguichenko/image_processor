@@ -9,3 +9,4 @@
 #include "filters/edge_detection/edge_detection.h"
 #include "filters/glass/glass.h"
 #include "parser/parser.h"
+#include "exceptions.h"

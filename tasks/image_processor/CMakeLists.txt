@@ -22,4 +22,5 @@ add_executable(
         filters/crop/crop.h
         filters/glass/glass.h
         base.h
+        exceptions.h
 )

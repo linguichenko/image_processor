@@ -1,4 +1,5 @@
 #include "image.h"
+#include "../exceptions.h"
 
 Color::Color() : r(0), g(0), b(0){};
 
@@ -27,8 +28,35 @@ Image Read(const std::string path) {
     DIBHeader information_header;
     Image image;
 
+    if (!f.is_open()) {
+        throw ReadImageException("can't open file");
+    }
+
     f.read(reinterpret_cast<char *>(&file_header), sizeof(file_header));
     f.read(reinterpret_cast<char *>(&information_header), sizeof(information_header));
+
+    if (file_header.file_type != base_values::FILE_TYPE) {
+        throw ReadImageException("Bad file");
+    }
+    if (file_header.unused != base_values::UNUSED) {
+        throw ReadImageException("Bad file");
+    }
+    if (information_header.planes != base_values::PLANES) {
+        throw ReadImageException("Bad file");
+    }
+    if (information_header.bit_count != base_values::BIT_COUNT) {
+        throw ReadImageException("Bad file");
+    }
+    if (information_header.colors_important != base_values::COLORS_IMPORTANT) {
+        throw ReadImageException("Bad file");
+    }
+    if (information_header.colors_used != base_values::COLORS_USED) {
+        throw ReadImageException("Bad file");
+    }
+    if (information_header.compression != base_values::COMPRESSION) {
+        throw ReadImageException("Bad file");
+    }
+
     image.width_ = information_header.width;
     image.height_ = information_header.height;
 
@@ -55,6 +83,10 @@ Image Read(const std::string path) {
 void Write(const Image &image, const std::string path) {
     std::ofstream f;
     f.open(path, std::ios::out | std::ios::binary);
+
+    if (!f.is_open()) {
+        throw Exception("can't open file");
+    }
 
     unsigned char bmp_pad[3] = {0, 0, 0};
     const int padding = ((4 - image.width_ * 3 % 4) % 4);

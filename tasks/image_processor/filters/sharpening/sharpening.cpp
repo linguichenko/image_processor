@@ -1,7 +1,7 @@
 #include "../../image_creation/image.h"
 #include "sharpening.h"
 
-void Sharp::ApplySpecial(Image &image) const {
+void Sharp::Apply(Image &image) const {
     ApplyMatrix(image);
 }
 

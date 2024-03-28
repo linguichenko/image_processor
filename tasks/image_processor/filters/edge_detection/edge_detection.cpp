@@ -2,7 +2,7 @@
 #include "../grayscale/greyscale.h"
 #include "edge_detection.h"
 
-void Edges::ApplySpecial(Image &image) const {
+void Edges::Apply(Image &image) const {
     Greyscale greyscale;
     greyscale.Apply(image);
     ApplyMatrix(image);
